@@ -19,6 +19,7 @@ builder.Services.AddDbContext<HrContext>(opts=>
 
 #region Repositories
 builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepsitoryDb>();
+builder.Services.AddScoped<IRepository<int, Department>, DepartmnetRepository>();
 
 #endregion
 
