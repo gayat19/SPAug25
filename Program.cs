@@ -17,11 +17,22 @@ builder.Services.AddDbContext<HrContext>(opts=>
 });
 #endregion
 
+
+
+#region  Mappers
+builder.Services.AddAutoMapper(typeof(HRAutoMapper));
+#endregion
+
 #region Repositories
 builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepsitoryDb>();
 builder.Services.AddScoped<IRepository<int, Department>, DepartmnetRepository>();
 
 #endregion
+
+#region  Services
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+#endregion
+
 
 var app = builder.Build();
 

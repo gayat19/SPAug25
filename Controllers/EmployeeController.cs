@@ -5,26 +5,38 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/[controller]")]
 public class EmployeeController : ControllerBase
 {
-    private readonly IRepository<int, Employee> _employeeRepository;
+    private readonly IEmployeeService _employeeService;
 
-    public EmployeeController(IRepository<int,Employee> employeeRepository)
+    public EmployeeController(IEmployeeService employeeService)
     {
-        _employeeRepository = employeeRepository;
+        _employeeService = employeeService;
     }
     [HttpGet]
-    public async Task<ActionResult<List<Employee>>> GetEmployees()
+    public async Task<ActionResult<List<GetEmployeeResponseDto>>> GetEmployees()
     {
-        var employees = await _employeeRepository.GetAll();
-        if (employees.Count() > 0)
+        try
+        {
+            var employees = await _employeeService.GetEmployees();
             return Ok(employees);
-        return NotFound("No Employees present");
+        }
+        catch (System.Exception e)
+        {
+           return NotFound(e.Message);
+        }
     }
 
     [HttpPost]
-    public async Task<ActionResult<Employee>> Anymethod([FromBody] Employee employee)
+    public async Task<ActionResult<AddEmployeeResponseDto>> Anymethod([FromBody] AddEmployeeRequestDto employee)
     {
-        var result = await _employeeRepository.Add(employee);
-        return Created("", result);
+        try
+        {
+            var result = await _employeeService.AddNewEmployee(employee);
+            return Created("", result);
+        }
+        catch (System.Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
 }

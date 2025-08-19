@@ -154,3 +154,5 @@ C:\Users\Administrator\employeeapp.Api\bin\Debug\net10.0\runtimes\win\lib\net6.0
 C:\Users\Administrator\employeeapp.Api\bin\Debug\net10.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Administrator\employeeapp.Api\bin\Debug\net10.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Administrator\employeeapp.Api\obj\Debug\net10.0\employeeapp.Api.sourcelink.json
+C:\Users\Administrator\employeeapp.Api\bin\Debug\net10.0\AutoMapper.dll
+C:\Users\Administrator\employeeapp.Api\bin\Debug\net10.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
