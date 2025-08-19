@@ -1,4 +1,5 @@
 using employeeapp.api.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
  builder.Services.AddSwaggerGen();
+
+#region Contexts
+builder.Services.AddDbContext<HrContext>(opts=>
+{
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+#endregion
 
 #region Repositories
 builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepsitory>();
