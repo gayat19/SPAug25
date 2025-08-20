@@ -1,8 +1,10 @@
 using employeeapp.api.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
+
 public class EmployeeController : ControllerBase
 {
     private readonly IEmployeeService _employeeService;
@@ -12,6 +14,7 @@ public class EmployeeController : ControllerBase
         _employeeService = employeeService;
     }
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<List<GetEmployeeResponseDto>>> GetEmployees()
     {
         try
@@ -21,7 +24,7 @@ public class EmployeeController : ControllerBase
         }
         catch (System.Exception e)
         {
-           return NotFound(e.Message);
+            return NotFound(e.Message);
         }
     }
 

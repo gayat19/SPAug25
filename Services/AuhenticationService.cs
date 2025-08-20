@@ -5,10 +5,13 @@ using System.Text;
 public class AuhenticationService : IAuthenticationService
 {
     private readonly ILOginSP _loginSpService;
+    private readonly ITokenService _tokenService;
 
-    public AuhenticationService(ILOginSP loginSpService)
+    public AuhenticationService(ILOginSP loginSpService,
+                                ITokenService tokenService)
     {
         _loginSpService = loginSpService;
+        _tokenService = tokenService;
     }
     public async Task<LoginResponseDto> Login(LoginRequestDto loginUser)
     {
@@ -27,7 +30,7 @@ public class AuhenticationService : IAuthenticationService
             var result = new LoginResponseDto
             {
                 Role = userDb.Role,
-                Token = ""
+                Token = _tokenService.GenerateToken(userDb)
 
             };
             return result;
