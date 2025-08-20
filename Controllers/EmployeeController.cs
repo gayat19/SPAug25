@@ -29,6 +29,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles ="HR")]
     public async Task<ActionResult<AddEmployeeResponseDto>> Anymethod([FromBody] AddEmployeeRequestDto employee)
     {
         try
