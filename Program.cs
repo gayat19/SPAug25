@@ -26,11 +26,13 @@ builder.Services.AddAutoMapper(typeof(HRAutoMapper));
 #region Repositories
 builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepsitoryDb>();
 builder.Services.AddScoped<IRepository<int, Department>, DepartmnetRepository>();
-
+builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
 #endregion
 
 #region  Services
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<ILOginSP, LOginSP>();
+builder.Services.AddScoped<IAuthenticationService, AuhenticationService>();
 #endregion
 
 
